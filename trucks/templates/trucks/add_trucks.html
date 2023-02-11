@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавяне на камион</title>
+</head>
+<body>
+<form action="{% url 'add_trucks' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary btn-block">Добавям камион</button>
+</form>
+</body>
+</html>

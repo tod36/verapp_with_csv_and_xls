@@ -15,3 +15,18 @@ class Trucks(models.Model):
     #     verbose_name = 'Камион'
     #     verbose_name_plural = 'Камиони'
     #     ordering = ['-storedplace']
+# export to excel
+
+# def highlight_cells(labelident):
+#     color = '#65656' if labelident == 76 else '#kbkbkb'
+#     # elif color = '#huhash' labelident == 77
+#     return 'background-color: {}'.format(color)
+#
+# df.style.applymap(highlight_cells)
+
+# def highlight_cells(labelident, color_if_true, color_if_false):
+#     color = color_if_true if labelident == 76 else color_if_true
+#     return 'background-color: {}'.format(color)
+#
+# df.style.applymap(highlight_cells, color_if_true='#hhjj', color_if_false='#RT465',
+#                   subset=['sepal_length', 'petal_length'])

@@ -50,10 +50,10 @@ def index(request):
 
 def exportexcel(request):
     if request.method == 'POST':
-        response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="trucks.csv"'
+        response = HttpResponse(content_type='application/ms-excel')
+        response['Content-Disposition'] = 'attachment; filename="trucks.xls"'
         writer = csv.writer(response)
-        writer.writerow(['Trucks Detail'])
+        # writer.writerow(['Trucks Detail'])
 
         writer.writerow(
             ['truckgroup', 'shortname', 'longname', 'truckinfo', 'storedplace', 'labelident'

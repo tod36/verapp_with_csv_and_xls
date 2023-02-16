@@ -16,7 +16,7 @@ class Trucks(models.Model):
     #     verbose_name_plural = 'Камиони'
     #     ordering = ['-storedplace']
 # export to excel
-
+# COLOR CELLS#############################################
 # def highlight_cells(labelident):
 #     color = '#65656' if labelident == 76 else '#kbkbkb'
 #     # elif color = '#huhash' labelident == 77

@@ -2,12 +2,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path
 
+from . import views
 from .views import *
 
 urlpatterns = [
     path('', index, name='home'),
     # path('proba/', proba),
-    path('trucks/add_trucks/', add_trucks, name='add_trucks'),
+    # path('exportexcel/', export_users_csv(), name='exportexcel'),
+    # path('trucks/exportexcel/', views.exportexcel, name="exportexcel"),
+    path('exportexcel/', exportexcel),
+    # path('export_users_csv/', views.export_users_csv, name="export_users_csv"),
 ]
 
 if settings.DEBUG:

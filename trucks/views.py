@@ -4,6 +4,14 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Trucks
 from .forms import TrucksForm
 
+import datetime as dt
+import pandas as pd
+import os
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+
+import csv
+
 
 # def index(request):
 #     trucks = Trucks.objects.all()
@@ -23,19 +31,40 @@ def index(request):
     }
     return render(request, 'trucks/index.html', context)
 
+
 # def proba(request):
 #     return HttpResponse('<h2>Proba za drugi kamioni</h2>')
 # mahame go i ot urls.py
 
-def add_trucks(request):
-    if request.method == 'POST':
-        form = TrucksForm(request.POST)
-        if form.is_valid():
-            # print(form.cleaned_data)
-            trucks = Trucks.objects.create(**form.cleaned_data)
-            # trucks = Trucks.objects.create(**form.cleaned_data)
-            return redirect(trucks)
-    else:
-        form = TrucksForm()
-    return render(request, 'trucks/add_trucks.html', {'form': form})
+# def add_trucks(request):
+#     if request.method == 'POST':
+#         form = TrucksForm(request.POST)
+#         if form.is_valid():
+#             # print(form.cleaned_data)
+#             trucks = Trucks.objects.create(**form.cleaned_data)
+#             # trucks = Trucks.objects.create(**form.cleaned_data)
+#             return redirect(trucks)
+#     else:
+#         form = TrucksForm()
+#     return render(request, 'trucks/add_trucks.html', {'form': form})
 
+def exportexcel(request):
+    if request.method == 'POST':
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="trucks.csv"'
+        writer = csv.writer(response)
+        writer.writerow(['Trucks Detail'])
+
+        writer.writerow(
+            ['truckgroup', 'shortname', 'longname', 'truckinfo', 'storedplace', 'labelident'
+             ])
+
+        trucks = Trucks.objects.all().values_list('truckgroup', 'shortname', 'longname', 'truckinfo', 'storedplace',
+                                                  'labelident'
+                                                  )
+
+        for truck in trucks:
+            writer.writerow(truck)
+        return response
+
+    return render(request, 'trucks/exportexcel.html')

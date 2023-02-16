@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from trucks.views import index
+
+from trucks import views
+from trucks.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # path('export_users_csv/', views.export_users_csv, name="export_users_csv"),
     path('', include('trucks.urls')),
 ]

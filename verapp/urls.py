@@ -21,6 +21,5 @@ from trucks.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('export_users_csv/', views.export_users_csv, name="export_users_csv"),
     path('', include('trucks.urls')),
 ]

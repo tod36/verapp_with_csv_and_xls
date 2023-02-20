@@ -1,0 +1,6 @@
+deployment:
+      tasks:
+        - export DEPLOYPATH=/home/neptunsi/repositories/verapp_with_csv_and_xls 
+        - /bin/cp filename index.html
+        - /bin/cp -r *
+        
